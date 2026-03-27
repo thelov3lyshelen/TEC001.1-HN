@@ -40,7 +40,7 @@ class Building:
         else:
             print("what")
     def fire_alarm(self):
-        print("Your journey got disrupted by a fire alarm, returning to the bottom floor")
+        print("Someone committed arson, initiate emergency")
         for elevator in self.elevators:
             elevator.go_to_floor(elevator.bottom)
 b = Building(1, 30, 4)
@@ -54,7 +54,7 @@ time.sleep(1)
 b.run_elevator(4, 3)
 time.sleep(2)
 b.fire_alarm()
-print("Moving to the bottom floor")
+print("All elevators were moved to the bottom floor")
 
 
 class Car:
@@ -62,7 +62,7 @@ class Car:
         self.registration_number = registration_number
         self.max_speed = max_speed
         self.current_speed = 0
-        self.travelled_distance = 2000
+        self.travelled_distance = 0
 
     def accelerate(self, change):
         self.current_speed += change
@@ -72,73 +72,36 @@ class Car:
             self.current_speed = 0
 
     def drive(self, hours):
-        self.travelled_distance += self.current_speed * hours
-
-
-car1 = Car("ABC-123", 142)
-
-print("Car Properties:")
-print(f"Registration Number: {car1.registration_number}")
-print(f"Maximum Speed: {car1.max_speed} km/h")
-print(f"Current Speed: {car1.current_speed} km/h")
-print(f"Travelled Distance: {car1.travelled_distance} km")
-
-car1.accelerate(60)
-# car1.accelerate(70)
-# car1.accelerate(50)
-print(f"Current Speed after accelerations: {car1.current_speed} km/h")
-# car1.accelerate(-200)
-print(f"Final Speed after emergency brake: {car1.current_speed} km/h\n")
-
-car1.drive(1.5)
-print(f"Travelled Distance: {car1.travelled_distance} km\n")
-
-cars = []
-for i in range(1, 11):
-    reg_number = f"ABC-{i}"
-    max_speed = random.randint(150, 200)
-    cars.append(Car(reg_number, max_speed))
-
-race_finished = False
-hours_passed = 0
-
-while not race_finished:
-    hours_passed += 1
-    for car in cars:
-        speed_change = random.randint(-10, 15)
-        car.accelerate(speed_change)
-        car.drive(1)
-        if car.travelled_distance >= 10000:
-            race_finished = True
-            break
-
-print(f"Race finished in {hours_passed} hours!\n")
-print(f"{'Car':<10}{'Max Speed':<12}{'Current Speed':<15}{'Distance Travelled':<20}")
-print("-" * 60)
-for car in cars:
-    print(f"{car.registration_number:<10}{car.max_speed:<12}{car.current_speed:<15}{car.travelled_distance:<20.1f}")
+        travelled_distance = self.current_speed * hours
+        self.travelled_distance += travelled_distance
 
 class Race:
     def __init__(self, name, distance, participants):
         self.name = name
         self.distance = distance
-        self.participants = cars
+        self.participants = participants
     def hour_passes(self):
-        for cars in self.participants:
+        for car in self.participants:
             speed_change = random.randint(-10, 15)
             car.accelerate(speed_change)
             car.drive(1)
     def print_status(self):
-        print(f"\nRace: {self.name}")
-        print(f"{'Reg. Number':<15} | {'Max Speed':<10} | {'Current Speed':<15} | {'Distance':<10}")
-        print("-" * 60)
-        for car in self.cars:
-            print(f"{car.registration_number:<15} | {car.max_speed:<10} | "f"{car.current_speed:<15} | {car.travelled_distance:<10}")
+        print(f"{'Registration Number':<15} | {'Max Speed':<10} | {'Distance':<12}")
+        print("-" * 50)
+        for car in self.participants:
+            print(f"{car.registration_number:<15} | {car.max_speed:<10} | {car.travelled_distance:<12}")
     def race_finished(self):
-        for car in self.cars:
+        for car in self.participants:
             if car.travelled_distance >= self.distance:
                 return True
         return False
+
+cars = []
+for i in range(1, 11):
+    reg_number = f"Car {i}"
+    max_speed = random.randint(150, 200)
+    cars.append(Car(reg_number, max_speed))
+
 grand_derby = Race("Grand Demolition Derby", 8000, cars)
 hours_elapsed = 0
 while not grand_derby.race_finished():
@@ -146,8 +109,8 @@ while not grand_derby.race_finished():
     hours_elapsed += 1
 
     if hours_elapsed % 10 == 0:
-        print(f"\n--- Hour {hours_elapsed} Status Update ---")
+        print(f"Hour {hours_elapsed}:")
         grand_derby.print_status()
 
-print(f"\n*** RACE FINISHED! Total time: {hours_elapsed} hours ***")
+print(f"Race finished after {hours_elapsed} hours.")
 grand_derby.print_status()
