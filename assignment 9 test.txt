@@ -1,0 +1,18 @@
+NOTE: You cannot use the "Upload files" function on the GitHub website to push your work; you can only do so via either PyCharm, or the Git CLI. A 25% grade deduction will be applied if the "Upload files" function is used.
+
+Questions 1-3 are worth 2.7pts each, question 4 is worth 1.5pts, and question 5 is worth 0.4pts.
+
+Write a function that will open a text file and count the total number of lines of text in that file. Blank lines will be ignored and does not add to the total count.
+Write a function that takes a text file and a specific keyword as its parameters. The function should return a list of line numbers (1-based index) where that keyword appears.
+You have a text file where each line contains a name and a score separated by a comma (e.g., Alice,85). Write a program that calculates the average score of all students in the given file.
+Write a function that implements the Caesar cipher technique. In particular:
+It should have 3 parameters: the file name, how many positions to shift, and the shifting direction (left/right).
+The function will open the file, and for every character (excluding numbers), replace it with a corresponding Caesar character. The general formula is as follows:
+For uppercase chars: y = (x ± n - 65) mod 26 + 65
+For lowercase chars: y = (x ± n - 97) mod 26 + 97, where x is the ASCII value of a character, n is the # of positions to shift, and y is the new ASCII value +/- depends on the shifting direction (right: +, left: -).
+For example, if you shift a character 3 positions to the right, then A becomes D, G becomes J, and Z becomes C.
+(Hint: to get the ASCII value of a character, you can use ord(c).)
+Finally, save the ciphertext (the results after the above algorithm) into a file.
+More information available here: https://en.wikipedia.org/wiki/Caesar_cipherLinks to an external site.. 
+(This question is a bit more challenging, but very fun to solve, in my opinion)
+Fill in the Time Report Form: Assignment 9 - Time Report FormLinks to an external site.. Try to be as accurate as possible.
