@@ -37,12 +37,12 @@ mock_database[2].display_metrics()
 nguyentrai = mock_database[1]
 tayho = mock_database[0]
 
-favorite = mock_database[2]
-print("Deep Introspection begins.")
-print(type(favorite))
-print(dir(favorite))
-print("Saving data...")
-print(favorite.__dict__)
+#favorite = mock_database[2]
+#print("Deep Introspection begins.")
+#rint(type(favorite))
+#print(dir(favorite))
+#print("Saving data...")
+#print(favorite.__dict__)
 
 # comparison = tayho.is_larger_than(nguyentrai)
 # print(f"Is ID 103 larger than ID 104? {comparison}")
